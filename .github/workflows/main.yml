@@ -50,15 +50,15 @@ jobs:
       - name: Get API URL
         id: get_url
         working-directory: ./terraform
-        run: echo "::set-output name=api_url::$(terraform output -raw api_url)"
+        run: echo "api_url=$(terraform output -raw api_url)" >> $GITHUB_ENV
       - name: Get Deployment Bucket
         id: get_bucket
         working-directory: ./terraform
-        run: echo "::set-output name=bucket::$(terraform output -raw deployment_bucket)"
+        run: echo "deployment_bucket=$(terraform output -raw deployment_bucket)" >> $GITHUB_ENV
       - name: Get AWS region
         id: get_region
         working-directory: ./terraform
-        run: echo "::set-output name=bucket::$(terraform output -raw aws_region)"
+        run: echo "aws_region=$(terraform output -raw aws_region)" >> $GITHUB_ENV
 
       - uses: subosito/flutter-action@v2
         with:
@@ -73,7 +73,7 @@ jobs:
         run: flutter build web --web-renderer html --release
         working-directory: ./client
         env:
-          API_URL: ${{ steps.get_url.outputs.api_url }}
+          API_URL: ${{ env.api_url }}
       - name: Modify Index HTML
         run: |
           # Navigate to the directory containing the index.html file
@@ -86,9 +86,9 @@ jobs:
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
         env:
-          AWS_S3_BUCKET: ${{ steps.get_bucket.outputs.bucket }}
+          AWS_S3_BUCKET: ${{ env.deployment_bucket }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ steps.get_region.outputs.aws_region }}
+          AWS_REGION: ${{ env.aws_region }}
           SOURCE_DIR: './client/build/web'
           DEST_DIR: 'deployment/'
