@@ -50,6 +50,10 @@ jobs:
         id: get_bucket
         run: echo "::set-output name=bucket::$(terraform output -raw deployment_bucket)"
 
+      - name: Get AWS region
+        id: get_region
+        run: echo "::set-output name=bucket::$(terraform output -raw aws_region)"
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
@@ -79,6 +83,6 @@ jobs:
           AWS_S3_BUCKET: ${{ steps.get_bucket.outputs.bucket }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-west-2'   # optional: defaults to us-east-1
+          AWS_REGION: ${{ steps.get_region.outputs.aws_region }}
           SOURCE_DIR: './client/build/web'
           DEST_DIR: 'deployment/'
