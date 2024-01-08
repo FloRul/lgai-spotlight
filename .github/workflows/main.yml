@@ -25,15 +25,19 @@ jobs:
         terraform_version: 1.6.6
 
     - name: Terraform Initialize
+      working-directory: ./terraform
       run: terraform init
 
     - name: Terraform Validate
+      working-directory: ./terraform
       run: terraform validate -no-color
 
     - name: Terraform Plan
+      working-directory: ./terraform
       run: terraform plan -no-color
 
     - name: Terraform Apply
+      working-directory: ./terraform
       run: terraform apply -auto-approve
   
   deploy-client:
@@ -45,13 +49,15 @@ jobs:
       
       - name: Get API URL
         id: get_url
+        working-directory: ./terraform
         run: echo "::set-output name=api_url::$(terraform output -raw api_url)"
       - name: Get Deployment Bucket
         id: get_bucket
+        working-directory: ./terraform
         run: echo "::set-output name=bucket::$(terraform output -raw deployment_bucket)"
-
       - name: Get AWS region
         id: get_region
+        working-directory: ./terraform
         run: echo "::set-output name=bucket::$(terraform output -raw aws_region)"
 
       - uses: subosito/flutter-action@v2
