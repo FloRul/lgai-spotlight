@@ -48,7 +48,7 @@ resource "aws_api_gateway_method_response" "embedding_inference_200" {
 }
 
 resource "aws_api_gateway_integration_response" "this" {
-  depends_on  = [aws_api_gateway_method_response.embedding_inference_200]
+  depends_on  = [aws_api_gateway_integration.embedding_inference_integration]
   rest_api_id = var.api_id
   resource_id = aws_api_gateway_resource.embedding_inference_resource.id
   http_method = aws_api_gateway_method.embedding_inference_method.http_method
@@ -102,7 +102,7 @@ resource "aws_api_gateway_integration" "options" {
 }
 
 resource "aws_api_gateway_integration_response" "options_200" {
-  depends_on  = [aws_api_gateway_method_response.options_200]
+  depends_on  = [aws_api_gateway_integration.options]
   rest_api_id = var.api_id
   resource_id = aws_api_gateway_resource.embedding_inference_resource.id
   http_method = aws_api_gateway_method.options_method.http_method

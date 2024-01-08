@@ -23,7 +23,4 @@ provider "aws" {
   }
 }
 
-module "client_website_deployment_bucket" {
-  source      = "../client/terraform"
-  environment = var.environment
-}
+
