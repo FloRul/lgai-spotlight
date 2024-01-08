@@ -2,9 +2,34 @@ resource "aws_s3_bucket" "client_deployment_bucket" {
   bucket = "${var.bucket_name_prefix}-${var.environment}"
 }
 
-resource "aws_s3_bucket_policy" "deployment_bucket_policy" {
+resource "aws_s3_bucket_policy" "deployment_bucket_policy_provisionner_allow_all" {
   bucket = aws_s3_bucket.client_deployment_bucket.id
-  policy = data.aws_iam_policy_document.allow_public_read_of_deployment_dev_folder.json
+  policy = data.aws_iam_policy_document.allow_all_for_provisioner.json
+}
+
+resource "aws_s3_bucket_policy" "deployment_bucket_policy_all_read" {
+  depends_on = [aws_s3_bucket_policy.deployment_bucket_policy_provisionner_allow_all]
+  bucket     = aws_s3_bucket.client_deployment_bucket.id
+  policy     = data.aws_iam_policy_document.allow_public_read_of_deployment_dev_folder.json
+}
+
+
+data "aws_iam_policy_document" "allow_all_for_provisioner" {
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = var.principal_identifiers
+    }
+    sid    = "AllowAllForProvisioner"
+    effect = "Allow"
+    resources = [
+      "${aws_s3_bucket.client_deployment_bucket.arn}/*",
+    ]
+
+    actions = [
+      "s3:*",
+    ]
+  }
 }
 
 data "aws_iam_policy_document" "allow_public_read_of_deployment_dev_folder" {
@@ -16,26 +41,12 @@ data "aws_iam_policy_document" "allow_public_read_of_deployment_dev_folder" {
     sid    = "AllowPublicReadOfDeploymentFolders"
     effect = "Allow"
     resources = [
-      "${aws_s3_bucket.client_deployment_bucket.arn}/deployment/dev/*"
+      "${aws_s3_bucket.client_deployment_bucket.arn}/deployment/*"
     ]
 
     actions = [
       "s3:GetObject",
     ]
-  }
-  statement {
-    principals {
-      type        = "AWS"
-      identifiers = var.principal_identifiers
-    }
-    sid    = "AllowAll"
-    effect = "Allow"
-    resources = [
-      "${aws_s3_bucket.client_deployment_bucket.arn}/*",
-      "${aws_s3_bucket.client_deployment_bucket.arn}"
-    ]
-
-    actions = var.policy_actions
   }
 }
 
