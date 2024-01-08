@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:portail_levio_ai/business/document.dart';
-import 'package:portail_levio_ai/presentation/retrieved_document_view.dart';
+import 'package:lgai_spotlight/business/document.dart';
+import 'package:lgai_spotlight/presentation/retrieved_document_view.dart';
 
 void main() {
   group('RetrievedDocumentView', () {
