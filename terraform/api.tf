@@ -10,17 +10,17 @@ resource "aws_api_gateway_authorizer" "cognito_authorizer" {
   provider_arns = [var.cognito_user_pool_arn]
 }
 
-# resource "aws_api_gateway_deployment" "api_deployment" {
-#  depends_on = [  ]
-#   rest_api_id = aws_api_gateway_rest_api.this.id
-#   description = "Deployment for ${timestamp()}"
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-#   triggers = {
-#     redeployment = timestamp()
-#   }
-# }
+resource "aws_api_gateway_deployment" "api_deployment" {
+  #  depends_on = [  ]
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  description = "Deployment for ${timestamp()}"
+  lifecycle {
+    create_before_destroy = true
+  }
+  triggers = {
+    redeployment = timestamp()
+  }
+}
 
 resource "aws_iam_role" "api_gateway_cloudwatch" {
   name = "${var.api_name}_${var.environment}_cloudwatch_role"
@@ -63,14 +63,14 @@ resource "aws_iam_role_policy" "api_gateway_cloudwatch_policy" {
   })
 }
 
-resource "aws_api_gateway_account" "this" {
+resource "aws_api_gateway_account" "apigw_cloudwatch_account" {
   cloudwatch_role_arn = aws_iam_role.api_gateway_cloudwatch.arn
 }
 
 resource "aws_api_gateway_stage" "api_stage" {
   stage_name    = var.environment
-  rest_api_id   = aws_api_gateway_rest_api.this.id
-  deployment_id = aws_api_gateway_deployment.this.id
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  deployment_id = aws_api_gateway_deployment.api_deployment.id
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.api_log_group.arn
