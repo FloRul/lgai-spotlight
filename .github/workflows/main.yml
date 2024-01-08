@@ -23,6 +23,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.6.6
+        terraform_wrapper: false
 
     - name: Terraform Initialize
       working-directory: ./terraform
