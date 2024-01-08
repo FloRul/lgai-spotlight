@@ -25,7 +25,7 @@ variable "policy_actions" {
     "s3:ListBucket",
     "s3:PutBucketWebsite",
     "s3:GetBucketWebsite",
-    "s3:DeleteBucketWebsite"
+    "s3:DeleteBucketWebsite",
     "s3:PutBucketPolicy",
   ]
 }
