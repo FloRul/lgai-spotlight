@@ -45,10 +45,12 @@ jobs:
       id: set_url
       working-directory: ./terraform
       run: echo "api_url=$(terraform output -raw api_url)" >> $GITHUB_ENV
+
     - name: set Deployment Bucket
       id: set_bucket
       working-directory: ./terraform
-      run: echo "deployment_bucket=$(terraform output -raw deployment_bucket)" >> $GITHUB_ENV
+      run: echo "client_bucket=$(terraform output -raw deployment_bucket)" >> $GITHUB_ENV
+
     - name: set AWS region
       id: set_region
       working-directory: ./terraform
@@ -88,9 +90,9 @@ jobs:
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
         env:
-          AWS_S3_BUCKET: ${{ env.deployment_bucket }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ env.client_bucket }}
           AWS_REGION: ${{ env.aws_region }}
           SOURCE_DIR: './client/build/web'
           DEST_DIR: 'deployment/'
