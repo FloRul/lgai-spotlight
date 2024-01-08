@@ -11,7 +11,7 @@ resource "aws_api_gateway_authorizer" "cognito_authorizer" {
 }
 
 resource "aws_api_gateway_deployment" "api_deployment" {
-  #  depends_on = [  ]
+  depends_on  = [module.embedding_inference_resources]
   rest_api_id = aws_api_gateway_rest_api.api.id
   description = "Deployment for ${timestamp()}"
   lifecycle {
