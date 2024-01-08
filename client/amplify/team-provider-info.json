@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lgaispotlight-dev-95422-authRole",
+      "UnauthRoleArn": "arn:aws:iam::446872271111:role/amplify-lgaispotlight-dev-95422-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::446872271111:role/amplify-lgaispotlight-dev-95422-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-lgaispotlight-dev-95422-deployment",
+      "UnauthRoleName": "amplify-lgaispotlight-dev-95422-unauthRole",
+      "StackName": "amplify-lgaispotlight-dev-95422",
+      "StackId": "arn:aws:cloudformation:us-west-2:446872271111:stack/amplify-lgaispotlight-dev-95422/cfcea470-ae35-11ee-bbf4-063bb82db3e1",
+      "AmplifyAppId": "d1otp1ecnny0qs"
+    },
+    "categories": {
+      "auth": {
+        "lgaispotlight11c0d10d": {}
+      }
+    }
+  }
+}

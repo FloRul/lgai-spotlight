@@ -1,0 +1,1 @@
+const completionsBoxName = 'completions';
