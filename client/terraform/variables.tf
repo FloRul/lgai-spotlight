@@ -19,13 +19,6 @@ variable "policy_actions" {
   description = "The actions that the policy allows on the deployment bucket"
   type        = list(string)
   default = [
-    "s3:PutObject",
-    "s3:GetObject",
-    "s3:DeleteObject",
-    "s3:ListBucket",
-    "s3:PutBucketWebsite",
-    "s3:GetBucketWebsite",
-    "s3:DeleteBucketWebsite",
-    "s3:PutBucketPolicy",
+    "s3:*"
   ]
 }
