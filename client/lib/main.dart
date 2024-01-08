@@ -9,8 +9,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import 'package:portail_levio_ai/amplifyconfiguration.dart';
-import 'package:portail_levio_ai/presentation/home_page.dart';
+import 'package:lgai_spotlight/amplifyconfiguration.dart';
+import 'package:lgai_spotlight/presentation/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

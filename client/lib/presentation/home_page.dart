@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:portail_levio_ai/application/documents_provider.dart';
-import 'package:portail_levio_ai/presentation/chat_view.dart';
-import 'package:portail_levio_ai/presentation/common/elevated_card.dart';
-import 'package:portail_levio_ai/presentation/rag_settings_view.dart';
-import 'package:portail_levio_ai/presentation/retrieved_document_view.dart';
-import 'package:portail_levio_ai/presentation/sidebar_view.dart';
+import 'package:lgai_spotlight/application/documents_provider.dart';
+import 'package:lgai_spotlight/presentation/chat_view.dart';
+import 'package:lgai_spotlight/presentation/common/elevated_card.dart';
+import 'package:lgai_spotlight/presentation/rag_settings_view.dart';
+import 'package:lgai_spotlight/presentation/retrieved_document_view.dart';
+import 'package:lgai_spotlight/presentation/sidebar_view.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class HomePage extends ConsumerStatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portail_levio_ai/business/document.dart';
+import 'package:lgai_spotlight/business/document.dart';
 
 class RetrievedDocumentView extends StatelessWidget {
   RetrievedDocumentView({super.key, required this.documents});

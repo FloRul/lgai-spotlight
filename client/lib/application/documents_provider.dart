@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:portail_levio_ai/business/completion.dart';
-import 'package:portail_levio_ai/business/document.dart';
+import 'package:lgai_spotlight/business/completion.dart';
+import 'package:lgai_spotlight/business/document.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'documents_provider.g.dart';

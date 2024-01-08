@@ -1,4 +1,4 @@
-import 'package:portail_levio_ai/application/rag_settings_state.dart';
+import 'package:lgai_spotlight/application/rag_settings_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'rag_settings_notifier.g.dart';
 

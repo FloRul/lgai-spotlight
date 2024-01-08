@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:portail_levio_ai/application/chat_messages_state.dart';
-import 'package:portail_levio_ai/application/dio_provider.dart';
-import 'package:portail_levio_ai/application/rag_settings_notifier.dart';
-import 'package:portail_levio_ai/business/completion.dart';
-import 'package:portail_levio_ai/business/document.dart';
+import 'package:lgai_spotlight/application/chat_messages_state.dart';
+import 'package:lgai_spotlight/application/dio_provider.dart';
+import 'package:lgai_spotlight/application/rag_settings_notifier.dart';
+import 'package:lgai_spotlight/business/completion.dart';
+import 'package:lgai_spotlight/business/document.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:shared_preferences/shared_preferences.dart';

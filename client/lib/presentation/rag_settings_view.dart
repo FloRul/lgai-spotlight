@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:portail_levio_ai/application/rag_settings_notifier.dart';
+import 'package:lgai_spotlight/application/rag_settings_notifier.dart';
 
 class RagSettingsView extends ConsumerWidget {
   const RagSettingsView({Key? key}) : super(key: key);

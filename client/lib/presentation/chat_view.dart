@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:portail_levio_ai/application/chat_state_notifier.dart';
+import 'package:lgai_spotlight/application/chat_state_notifier.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatView extends ConsumerWidget {
