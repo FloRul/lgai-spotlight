@@ -39,6 +39,19 @@ jobs:
     - name: Terraform Apply
       working-directory: ./terraform
       run: terraform apply -auto-approve
+
+    - name: set API URL
+      id: set_url
+      working-directory: ./terraform
+      run: echo "api_url=$(terraform output -raw api_url)" >> $GITHUB_ENV
+    - name: set Deployment Bucket
+      id: set_bucket
+      working-directory: ./terraform
+      run: echo "deployment_bucket=$(terraform output -raw deployment_bucket)" >> $GITHUB_ENV
+    - name: set AWS region
+      id: set_region
+      working-directory: ./terraform
+      run: echo "aws_region=$(terraform output -raw aws_region)" >> $GITHUB_ENV
   
   deploy-client:
     runs-on: ubuntu-latest
@@ -47,18 +60,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Get API URL
-        id: get_url
-        working-directory: ./terraform
-        run: echo "api_url=$(terraform output -raw api_url)" >> $GITHUB_ENV
-      - name: Get Deployment Bucket
-        id: get_bucket
-        working-directory: ./terraform
-        run: echo "deployment_bucket=$(terraform output -raw deployment_bucket)" >> $GITHUB_ENV
-      - name: Get AWS region
-        id: get_region
-        working-directory: ./terraform
-        run: echo "aws_region=$(terraform output -raw aws_region)" >> $GITHUB_ENV
 
       - uses: subosito/flutter-action@v2
         with:
