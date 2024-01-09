@@ -36,22 +36,22 @@ data "aws_iam_policy_document" "allow_public_read_of_deployment_dev_folder" {
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "website_config" {
-  bucket = aws_s3_bucket.client_deployment_bucket.id
+# resource "aws_s3_bucket_website_configuration" "website_config" {
+#   bucket = aws_s3_bucket.client_deployment_bucket.id
 
-  index_document {
-    suffix = "index.html"
-  }
+#   index_document {
+#     suffix = "index.html"
+#   }
 
-  routing_rule {
-    condition {
-      key_prefix_equals = "*/*"
-    }
-    redirect {
-      replace_key_prefix_with = "deployment/dev/"
-    }
-  }
-}
+#   routing_rule {
+#     condition {
+#       key_prefix_equals = "*/*"
+#     }
+#     redirect {
+#       replace_key_prefix_with = "deployment/"
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket_ownership_controls" "bucket_controls" {
   bucket = aws_s3_bucket.client_deployment_bucket.id
