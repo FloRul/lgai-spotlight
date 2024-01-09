@@ -1,11 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:io';
-
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +12,7 @@ import 'package:lgai_spotlight/presentation/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureAmplify();
-  await loadDotEnv();
   runApp(const ProviderScope(child: MyApp()));
-}
-
-Future<void> loadDotEnv() async {
-  await DotEnv().load(mergeWith: Platform.environment);
 }
 
 Future<void> _configureAmplify() async {

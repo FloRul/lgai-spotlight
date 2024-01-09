@@ -1,7 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dio_provider.g.dart';
@@ -10,7 +9,7 @@ part 'dio_provider.g.dart';
 Dio dio(DioRef ref) {
   var dio = Dio(
     BaseOptions(
-      baseUrl: dotenv.env['API_URL']!,
+      baseUrl: const String.fromEnvironment('API_URL'),
       contentType: Headers.jsonContentType,
       responseType: ResponseType.json,
       persistentConnection: false,

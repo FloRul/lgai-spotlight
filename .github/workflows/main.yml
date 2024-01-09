@@ -66,10 +66,8 @@ jobs:
       working-directory: ./client
 
     - name: Build Web App
-      run: flutter build web --web-renderer html --release
+      run: flutter build web --web-renderer html --release --dart-define=API_URL=${{ env.api_url }}
       working-directory: ./client
-      env:
-        API_URL: ${{ env.api_url }}
     - name: Modify Index HTML
       run: |
         # Navigate to the directory containing the index.html file
