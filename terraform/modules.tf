@@ -5,7 +5,7 @@ module "api" {
 }
 
 module "client_website_deployment_bucket" {
-  source      = "../client/terraform"
+  source      = "../flutter/terraform"
   environment = var.environment
 }
 
