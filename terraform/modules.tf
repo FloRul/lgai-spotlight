@@ -9,3 +9,8 @@ module "client_website_deployment_bucket" {
   source      = "../client/terraform"
   environment = var.environment
 }
+
+module "shared_resources" {
+  source     = "../features/shared"
+  aws_region = var.aws_region
+}
